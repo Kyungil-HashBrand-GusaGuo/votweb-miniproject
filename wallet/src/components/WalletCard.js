@@ -19,12 +19,14 @@ const WalletCard = () => {
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
 	const [userBalance, setUserBalance] = useState(null);
-	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-
-	const [currentContractVal, setCurrentContractVal] = useState(null);
-	const [provider, setProvider] = useState(null);
-	const [signer, setSigner] = useState(null);
+	//const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+	//const [currentContractVal, setCurrentContractVal] = useState(null);
+	//const [provider, setProvider] = useState(null);
+	//const [signer, setSigner] = useState(null);
 	const [contract, setContract] = useState(null);
+	const [voteNum1, setVoteNum1] = useState();
+	const [voteNum2, setVoteNum2] = useState();
+	const [voteNum3, setVoteNum3] = useState();
 
 	const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
@@ -34,7 +36,7 @@ const WalletCard = () => {
 			.then(result => {
                 console.log("계정주소", result)
 				accountChangedHandler(result[0]);
-				setConnButtonText('Wallet Connected');
+				//setConnButtonText('Wallet Connected');
 				getAccountBalance(result[0]);
 			})
 			.catch(error => {
@@ -82,26 +84,48 @@ const WalletCard = () => {
 	// updateEthers
 	const updateEthers = () => {
 		let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-		setProvider(tempProvider);
+		//setProvider(tempProvider);
 
 		let tempSigner = tempProvider.getSigner();
-		setSigner(tempSigner);
+		//setSigner(tempSigner);
 
 		let tempContract = new ethers.Contract(contractAddress, SimpleStorage_abi, tempSigner);
 		setContract(tempContract);	
 	}
 
-	const test1 = async() => {
+	const vote = async() => {
 		const response = await contract.toVote(selectNumber);
 		alert("투표완료!")
 		console.log(response);
 	}
 
-	const test2 = async() => {
+	const toResult = async() => {
 		const response = await contract.checkVoteCount();
 		console.log("1번 : ", parseInt(response[0], 16));
-		console.log("2번 : ",parseInt(response[1], 16));
-		console.log("3번 : ",parseInt(response[2], 16));
+		console.log("2번 : ", parseInt(response[1], 16));
+		console.log("3번 : ", parseInt(response[2], 16));
+		setVoteNum1(parseInt(response[0], 16));
+		setVoteNum2(parseInt(response[1], 16));
+		setVoteNum3(parseInt(response[2], 16));
+	}
+
+	const readResult = () => {
+		
+		let readVoteResult = Math.max(voteNum1,voteNum2,voteNum3);
+
+		switch(readVoteResult) {
+			case readVoteResult == voteNum1 :
+				return voteNum1;
+
+			case readVoteResult == voteNum2 :
+				return voteNum2;
+
+			case readVoteResult == voteNum3 :
+				return voteNum3;
+			
+			default :
+				return "";
+		}
 	}
 
 	// useEffect
@@ -148,12 +172,18 @@ const WalletCard = () => {
                 {/* <button onClick={votefinish}>
                     투표완료
                 </button> */}
-                <button onClick={test1}> 투표하기 </button>
+                <button onClick={vote}> 투표하기 </button>
                 
 				{ userBalance == "0xb6e4e1888fd9ba1c005b63c0bce4329fea29f171"
-				? <button onClick={test2}> 관리자권한 </button>
+				? <>
+					<button onClick={toResult}> 관리자권한 </button>
+					<p>1번 : {voteNum1} 표</p>
+					<p>2번 : {voteNum2} 표</p>
+					<p>3번 : {voteNum3} 표</p>
+				</>
 				: null
 				}
+				
             </div>
 		</div>
 	);
