@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { ethers } from 'ethers'
 import SimpleStorage_abi from '../contracts/SimpleStorage_abi.json'
-
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 
 const WalletCard = () => {
+
+    const navigate = useNavigate();
+
+    const showVoteResult = () => {
+        navigate("/voteresult");
+    }
 	
 	let contractAddress = '0xa72B369D2C2376D16A53B5a4E3674Ef099C872f9';
 
@@ -116,9 +122,10 @@ const WalletCard = () => {
             title: '투표완료!',
             text: '투표가 완료되었습니다!',
             icon: 'success',
-            confirmButtonText: 'Back',
-            footer: `<button onClick={console.log('눌림')}>투표결과보기</button>`
+            confirmButtonText: '투표결과보기',
+            footer: `<button onClick={${showVoteResult()}}></button>`
         })
+        
     }
 	
 	return (

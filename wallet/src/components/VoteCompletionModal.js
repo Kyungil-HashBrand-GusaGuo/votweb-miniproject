@@ -1,6 +1,6 @@
 import React from 'react'
 import './modal.css';
-import { MdExitToApp } from "react-icons/md";
+// import { MdCancelScheduleSend } from "react-icons/md";
 
 const VoteCompletionModal = (props) => {
 
