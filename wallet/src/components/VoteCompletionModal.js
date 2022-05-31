@@ -3,7 +3,7 @@ import './modal.css';
 
 const VoteCompletionModal = (props) => {
 
-    const { open, close, movie} = props;
+    const { open, close } = props;
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
     {open ? (
@@ -14,7 +14,7 @@ const VoteCompletionModal = (props) => {
           </button>
         </header>
         <main className='videocontainer'>
-
+            <h1>투표완료</h1>
         </main>
         
       </section>
