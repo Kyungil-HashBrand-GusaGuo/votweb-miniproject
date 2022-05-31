@@ -37,6 +37,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "resultVote",
+				"outputs": [
+					{
+						"internalType": "uint256[3]",
+						"name": "",
+						"type": "uint256[3]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -97,11 +110,11 @@
 	},
 	"sources": {
 		"vote.sol": {
-			"keccak256": "0xbed0a73812efa0db613a7a1bd3d21d5c29027e47918103e06ade01aabd728ed9",
+			"keccak256": "0x8f170fb7445e0757b771b1bb4db1b99a95774ff829fbda350d39f750349fccec",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://648ea60dd0f09e7ffe9a98f753a7f6dbe3ff6bbff1bfc04b0b1b092d948de3cc",
-				"dweb:/ipfs/QmZkmVb7eRhCxZSgvywrAYFuiF9ZxoH46iUsapgdj2ukzx"
+				"bzz-raw://fd79d3fcced3742f5d530bb6ec4f2d06ff8f34bb0187f2aac654b99d49c3663c",
+				"dweb:/ipfs/Qmf5mwJpY1Wb2AXFzXa5iCSzhNt1cMnwAJCnYWzFnLfGYN"
 			]
 		}
 	},
