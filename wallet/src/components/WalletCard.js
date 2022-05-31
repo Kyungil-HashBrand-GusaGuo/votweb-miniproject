@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { VoteCompletionModal } from './components';
-//import './WalletCard.css'
 
 const WalletCard = () => {
-
-	const [modalOpen, setModalOpen] = useState(false);
-
- 	const openModal = () => {
-      	console.log('open!')
-    setModalOpen(true);
-  	};
- 	const closeModal = () => {
-    	setModalOpen(false);
-  	};
-
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
@@ -104,10 +91,7 @@ const WalletCard = () => {
 				<input type="checkbox" value="3" onChange={(e)=>changeNumber(e.target.value)}/> 3번
 			</div>
 			{selectNumber}
-			<div>
-				<button onClick={openModal}>투표완료모달</button>
-				<VoteCompletionModal open={modalOpen} close={closeModal} header="Modal heading" ></VoteCompletionModal>
-			</div>
+			
 		</div>
 	);
 }
