@@ -1,4 +1,4 @@
-import VoteCompletionModal from "./VoteCompletionModal";
+import VotePage from "./VotePage";
 
 
-export { VoteCompletionModal };
+export { VotePage };
