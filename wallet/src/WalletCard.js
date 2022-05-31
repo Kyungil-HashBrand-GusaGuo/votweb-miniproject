@@ -1,8 +1,20 @@
 import React, { useState } from 'react'
 import { ethers } from 'ethers'
+import VoteCompletionModal from './components/VoteCompletionModal';
 //import './WalletCard.css'
 
 const WalletCard = () => {
+
+	const [modalOpen, setModalOpen] = useState(false);
+
+ 	const openModal = () => {
+      	console.log('open!')
+    setModalOpen(true);
+  	};
+ 	const closeModal = () => {
+    	setModalOpen(false);
+  	};
+
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
@@ -73,6 +85,10 @@ const WalletCard = () => {
 				<h3>Balance: {userBalance}</h3>
 			</div>
 			{errorMessage}
+			<div>
+				<button onClick={openModal}>투표완료모달</button>
+				<VoteCompletionModal open={modalOpen} close={closeModal} header="Modal heading" ></VoteCompletionModal>
+			</div>
 		</div>
 	);
 }
