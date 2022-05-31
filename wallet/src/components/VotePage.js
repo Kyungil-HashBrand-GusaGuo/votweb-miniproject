@@ -19,10 +19,10 @@ const VotePage = () => {
       <div>
         <WalletCard/>
       </div>
-      <div>
+      {/* <div>
 				<button onClick={openModal}>투표완료모달</button>
 				<VoteCompletionModal open={modalOpen} close={closeModal} header="Modal heading" />
-			</div>
+			</div> */}
     </div>
   )
 }
