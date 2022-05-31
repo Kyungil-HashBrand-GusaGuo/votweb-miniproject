@@ -16,7 +16,6 @@ const SimpleStorage = () => {
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
 
 	const [currentContractVal, setCurrentContractVal] = useState(null);
-
 	const [provider, setProvider] = useState(null);
 	const [signer, setSigner] = useState(null);
 	const [contract, setContract] = useState(null);
