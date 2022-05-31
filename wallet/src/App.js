@@ -4,9 +4,11 @@ import WalletCard from "./WalletCard.js"
 function App() {
 
   return (
-		<div>
-      <WalletCard/>
-		</div>
+    <>
+		  <div>
+        <WalletCard/>
+		  </div>
+    </>
   );
 }
 
