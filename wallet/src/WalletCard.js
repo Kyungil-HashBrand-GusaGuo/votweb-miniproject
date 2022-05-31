@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { VoteCompletionModal } from './components';
 //import './WalletCard.css'
@@ -74,18 +74,22 @@ const WalletCard = () => {
 
 	window.ethereum.on('chainChanged', chainChangedHandler);
 
+	// useEffect
+	useEffect( () => {
+		connectWalletHandler()
+	}, [])
+
+	// radio button state
 	const [selectNumber, setSelectNumber] = useState(0);
-	
 
 	const changeNumber = (e) => {
 		setSelectNumber(e)
-
 	}
 	
 	return (
 		<div className='walletCard'>
 		<h4> {"Connection to MetaMask using window.ethereum methods"} </h4>
-			<button onClick={connectWalletHandler}>{connButtonText}</button>
+			<button>{connButtonText}</button>
 			<div className='accountDisplay'>
 				<h3>Address: {defaultAccount}</h3>
 			</div>
@@ -93,11 +97,11 @@ const WalletCard = () => {
 				<h3>Balance: {userBalance}</h3>
 			</div>
 			{errorMessage}
-			<div onChange={(e)=>changeNumber(e.target.value)}>
+			<div>
 				<p>==========================</p>
-				<input type="radio" value="1" /> 1번
-				<input type="radio" value="2" /> 2번
-				<input type="radio" value="3" /> 3번
+				<input type="checkbox" value="1" onChange={(e)=>changeNumber(e.target.value)}/> 1번
+				<input type="checkbox" value="2" onChange={(e)=>changeNumber(e.target.value)}/> 2번
+				<input type="checkbox" value="3" onChange={(e)=>changeNumber(e.target.value)}/> 3번
 			</div>
 			{selectNumber}
 			<div>
