@@ -14,8 +14,8 @@ import SimpleStorage from './SimpleStorage'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<Web3ReactProvider getLibrary={getLibrary}>
-    //<App />
-    <SimpleStorage/>
+    <App />
+    //<SimpleStorage/>
   //</Web3ReactProvider>
 );
 

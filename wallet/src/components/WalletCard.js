@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Form } from 'react-bootstrap'
 import { ethers } from 'ethers'
-<<<<<<< Updated upstream
 //import {Web3} from "web3";
 
-=======
 import Swal from 'sweetalert2'
->>>>>>> Stashed changes
 
 
 const WalletCard = () => {
@@ -113,12 +111,11 @@ const WalletCard = () => {
 				<h3>Balance: {userBalance}</h3>
 			</div>
 			{errorMessage}
-			<div>
-				<p>==========================</p>
-				<input type="checkbox" value="1" onChange={(e)=>changeNumber(e.target.value)}/> 1번
-				<input type="checkbox" value="2" onChange={(e)=>changeNumber(e.target.value)}/> 2번
-				<input type="checkbox" value="3" onChange={(e)=>changeNumber(e.target.value)}/> 3번
-			</div>
+				<Form onChange={(e)=>changeNumber(e.target.value)}>
+					<Form.Check	label="1번"	name="voteNumber" type="radio" value="1"/>
+					<Form.Check	label="2번"	name="voteNumber" type="radio" value="2"/>
+					<Form.Check	label="3번"	name="voteNumber" type="radio" value="3"/>
+				</Form>
 			{selectNumber}
 			<div>
                 <button onClick={votefinish}>
