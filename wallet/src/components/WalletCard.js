@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+//import {Web3} from "web3";
+
+
 
 const WalletCard = () => {
+	
+	// let lotteryAddress = "0xa72B369D2C2376D16A53B5a4E3674Ef099C872f9";
+	// let lotteryABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"checkVoteCount","outputs":[{"internalType":"uint256[3]","name":"","type":"uint256[3]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_num","type":"uint256"}],"name":"toVote","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"voteArray","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+	
+
+	// const web3 = new Web3(window.ethereum);
+
+
+	// const lotteryContract = new web3.eth.Contract(lotteryABI, lotteryAddress);
+
+	// console.log(lotteryContract)
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);

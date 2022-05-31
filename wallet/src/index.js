@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import SimpleStorage from './SimpleStorage'
 // import { Web3ReactProvider } from "@web3-react/core";
 // import { Web3Provider } from "@ethersproject/providers";
 
@@ -13,7 +14,8 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<Web3ReactProvider getLibrary={getLibrary}>
-    <App />
+    //<App />
+    <SimpleStorage/>
   //</Web3ReactProvider>
 );
 
