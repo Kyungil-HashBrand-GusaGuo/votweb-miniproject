@@ -99,6 +99,7 @@ const WalletCard = () => {
 
 	const test2 = async() => {
 		const response = await contract.checkVoteCount();
+		console.log(response);
 		console.log("1번 : ", parseInt(response[0], 16));
 		console.log("2번 : ",parseInt(response[1], 16));
 		console.log("3번 : ",parseInt(response[2], 16));
@@ -150,7 +151,7 @@ const WalletCard = () => {
                 </button> */}
                 <button onClick={test1}> 투표하기 </button>
                 
-				{ userBalance == "0xb6e4e1888fd9ba1c005b63c0bce4329fea29f171"
+				{ defaultAccount == "0xb6e4e1888fd9ba1c005b63c0bce4329fea29f171"
 				? <button onClick={test2}> 관리자권한 </button>
 				: null
 				}

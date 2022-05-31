@@ -38,6 +38,14 @@ contract vote {
         return voteCountArray;
     }
 
+    // 투표 종료 함수
+    function resultVote() public returns(uint256[3] memory) {
+        require(msg.sender == owner, "using onlyowner");
+        for(uint256 i = 0; i < voteCountArray.length; i++) {
+            voteCountArray[i] = 0;
+        }
+    } 
+
 
     // 중복 투표 방지 함수
     function isvalidVote(uint256 _num) internal view returns(bool) {
