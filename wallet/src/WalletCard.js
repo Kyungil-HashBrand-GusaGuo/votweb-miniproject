@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ethers } from 'ethers'
-import VoteCompletionModal from './components/VoteCompletionModal';
+import { VoteCompletionModal } from './components';
 //import './WalletCard.css'
 
 const WalletCard = () => {
