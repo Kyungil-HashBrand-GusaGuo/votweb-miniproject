@@ -28,24 +28,24 @@ const WalletCard = () => {
 		} else {
 			console.log('Need to install MetaMask');
 			setErrorMessage('Please install MetaMask browser extension to interact');
+			}
 		}
-	}
 
-	// update account, will cause component re-render
-	const accountChangedHandler = (newAccount) => {
-		setDefaultAccount(newAccount);
-		getAccountBalance(newAccount.toString());
-	}
+		// update account, will cause component re-render
+		const accountChangedHandler = (newAccount) => {
+			setDefaultAccount(newAccount);
+			getAccountBalance(newAccount.toString());
+		}
 
-	const getAccountBalance = (account) => {
-		window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
-		.then(balance => {
-			setUserBalance(ethers.utils.formatEther(balance));
-            console.log("밸런스", balance)
-		})
-		.catch(error => {
-			setErrorMessage(error.message);
-		});
+		const getAccountBalance = (account) => {
+			window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
+			.then(balance => {
+				setUserBalance(ethers.utils.formatEther(balance));
+				console.log("밸런스", balance)
+			})
+			.catch(error => {
+				setErrorMessage(error.message);
+			});
         
         //let test2 = test.json();
         //console.log(balance)
@@ -61,6 +61,14 @@ const WalletCard = () => {
 	window.ethereum.on('accountsChanged', accountChangedHandler);
 
 	window.ethereum.on('chainChanged', chainChangedHandler);
+
+	const [selectNumber, setSelectNumber] = useState(0);
+	
+
+	const changeNumber = (e) => {
+		setSelectNumber(e)
+
+	}
 	
 	return (
 		<div className='walletCard'>
@@ -73,6 +81,13 @@ const WalletCard = () => {
 				<h3>Balance: {userBalance}</h3>
 			</div>
 			{errorMessage}
+			<div onChange={(e)=>changeNumber(e.target.value)}>
+				<p>==========================</p>
+				<input type="radio" value="1" /> 1번
+				<input type="radio" value="2" /> 2번
+				<input type="radio" value="3" /> 3번
+			</div>
+			{selectNumber}
 		</div>
 	);
 }
