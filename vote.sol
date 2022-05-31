@@ -31,6 +31,7 @@ contract vote {
     }
 
 
+
     // 투표 결과 호출
     function checkVoteCount() public view returns(uint256[3] memory) {
         require(msg.sender == owner, "using onlyonwer");

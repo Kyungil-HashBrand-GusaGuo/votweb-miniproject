@@ -98,7 +98,7 @@ const SimpleStorage = () => {
 
 	const test2 = async() => {
 		const response = await contract.checkVoteCount();
-		console.log(parseInt(response[0], 16));
+		console.log(parseInt(response[2], 16));
 	}
     // console.log("확인",contract)
     // console.log("확인2",contract.methods.owner().call())
