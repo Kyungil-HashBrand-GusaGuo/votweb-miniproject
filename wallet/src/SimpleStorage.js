@@ -12,6 +12,7 @@ const SimpleStorage = () => {
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
+	const [userBalance, setUserBalance] = useState(null);
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
 
 	const [currentContractVal, setCurrentContractVal] = useState(null);
@@ -27,6 +28,7 @@ const SimpleStorage = () => {
 			.then(result => {
 				accountChangedHandler(result[0]);
 				setConnButtonText('Wallet Connected');
+				getAccountBalance(result[0]);
 			})
 			.catch(error => {
 				setErrorMessage(error.message);
@@ -77,10 +79,30 @@ const SimpleStorage = () => {
 		let val = await contract.get();
 		setCurrentContractVal(val);
 	}
+
+	const getAccountBalance = (account) => {
+		window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
+		.then(balance => {
+			setUserBalance(ethers.utils.formatEther(balance));
+			console.log("밸런스", balance)
+		})
+		.catch(error => {
+			setErrorMessage(error.message);
+		});
+	}
 	
-    console.log("확인",contract)
+	const test1 = async() => {
+		const response = await contract.toVote(1);
+		console.log(response);
+	}
+
+	const test2 = async() => {
+		const response = await contract.checkVoteCount();
+		console.log(parseInt(response[0], 16));
+	}
+    // console.log("확인",contract)
     // console.log("확인2",contract.methods.owner().call())
-    // console.log("확인2",contract.toVote(3)
+    // console.log("확인2",contract.toVote);
 
 	return (
 		<div>
@@ -88,13 +110,15 @@ const SimpleStorage = () => {
 			<button onClick={connectWalletHandler}>{connButtonText}</button>
 			<div>
 				<h3>Address: {defaultAccount}</h3>
+				<h3>Balance: {userBalance}</h3>
 			</div>
 			<form onSubmit={setHandler}>
 				<input id="setText" type="text"/>
 				<button type={"submit"}> Update Contract </button>
 			</form>
 			<div>
-			<button onClick={getCurrentVal} style={{marginTop: '5em'}}> Get Current Contract Value </button>
+			<button onClick={test1} style={{marginTop: '5em'}}> Get Current Contract Value </button>
+			<button onClick={test2} style={{marginTop: '5em'}}> Get Current Contract Value2 </button>
 			</div>
 			{currentContractVal}
 			{errorMessage}
