@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { Web3ReactProvider } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+import SimpleStorage from './SimpleStorage'
+// import { Web3ReactProvider } from "@web3-react/core";
+// import { Web3Provider } from "@ethersproject/providers";
 
 // function getLibrary(provider) {
 //   const library = new Web3Provider(provider, "any");
@@ -13,7 +14,8 @@ import { Web3Provider } from "@ethersproject/providers";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<Web3ReactProvider getLibrary={getLibrary}>
-    <App />
+    //<App />
+    <SimpleStorage/>
   //</Web3ReactProvider>
 );
 

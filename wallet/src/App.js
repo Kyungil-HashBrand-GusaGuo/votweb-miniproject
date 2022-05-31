@@ -1,12 +1,14 @@
 import './App.css';
-import WalletCard from "./WalletCard.js"
+import { VotePage } from "./components"
 
 function App() {
 
   return (
-		<div>
-      <WalletCard/>
-		</div>
+    <>
+		  <div>
+        <VotePage/>
+		  </div>
+    </>
   );
 }
 
