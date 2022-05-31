@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+<<<<<<< Updated upstream
 //import {Web3} from "web3";
 
+=======
+import Swal from 'sweetalert2'
+>>>>>>> Stashed changes
 
 
 const WalletCard = () => {
@@ -86,6 +90,17 @@ const WalletCard = () => {
 	const changeNumber = (e) => {
 		setSelectNumber(e)
 	}
+
+    const votefinish = () => {
+        Swal.fire(
+            {
+            title: '투표완료!',
+            text: '투표가 완료되었습니다!',
+            icon: 'success',
+            confirmButtonText: 'Back',
+            footer: `<button onClick={console.log('눌림')}>투표결과보기</button>`
+        })
+    }
 	
 	return (
 		<div className='walletCard'>
@@ -105,7 +120,11 @@ const WalletCard = () => {
 				<input type="checkbox" value="3" onChange={(e)=>changeNumber(e.target.value)}/> 3번
 			</div>
 			{selectNumber}
-			
+			<div>
+                <button onClick={votefinish}>
+                    투표완료
+                </button>
+            </div>
 		</div>
 	);
 }

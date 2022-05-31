@@ -1,5 +1,6 @@
 import React from 'react'
 import './modal.css';
+import { MdExitToApp } from "react-icons/md";
 
 const VoteCompletionModal = (props) => {
 
@@ -15,7 +16,7 @@ const VoteCompletionModal = (props) => {
         </header>
         <main className='videocontainer'>
             <div>
-                <h1>투표완료</h1>
+                <h1>투표 결과</h1>
             </div>
             <div>
                 <div>
