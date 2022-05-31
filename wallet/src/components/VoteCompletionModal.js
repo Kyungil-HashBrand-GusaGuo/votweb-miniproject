@@ -14,7 +14,14 @@ const VoteCompletionModal = (props) => {
           </button>
         </header>
         <main className='videocontainer'>
-            <h1>투표완료</h1>
+            <div>
+                <h1>투표완료</h1>
+            </div>
+            <div>
+                <div>
+                    
+                </div>
+            </div>
         </main>
         
       </section>
