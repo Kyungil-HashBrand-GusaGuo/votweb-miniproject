@@ -14,17 +14,20 @@ const WalletCard = () => {
         navigate("/voteresult");
     }
 	
-	let contractAddress = '0xa72B369D2C2376D16A53B5a4E3674Ef099C872f9';
+	let contractAddress = '0x438Ba079f056ba91cf510D33fEA6b6E3A7BEacea';
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
 	const [userBalance, setUserBalance] = useState(null);
-	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-
-	const [currentContractVal, setCurrentContractVal] = useState(null);
-	const [provider, setProvider] = useState(null);
-	const [signer, setSigner] = useState(null);
+	const [finish, setFinish] = useState("");
+	//const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+	//const [currentContractVal, setCurrentContractVal] = useState(null);
+	//const [provider, setProvider] = useState(null);
+	//const [signer, setSigner] = useState(null);
 	const [contract, setContract] = useState(null);
+	const [voteNum1, setVoteNum1] = useState(0);
+	const [voteNum2, setVoteNum2] = useState(0);
+	const [voteNum3, setVoteNum3] = useState(0);
 
 	const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
@@ -34,7 +37,7 @@ const WalletCard = () => {
 			.then(result => {
                 console.log("계정주소", result)
 				accountChangedHandler(result[0]);
-				setConnButtonText('Wallet Connected');
+				//setConnButtonText('Wallet Connected');
 				getAccountBalance(result[0]);
 			})
 			.catch(error => {
@@ -82,27 +85,58 @@ const WalletCard = () => {
 	// updateEthers
 	const updateEthers = () => {
 		let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-		setProvider(tempProvider);
+		//setProvider(tempProvider);
 
 		let tempSigner = tempProvider.getSigner();
-		setSigner(tempSigner);
+		//setSigner(tempSigner);
 
 		let tempContract = new ethers.Contract(contractAddress, SimpleStorage_abi, tempSigner);
 		setContract(tempContract);	
 	}
 
-	const test1 = async() => {
+	const vote = async() => {
 		const response = await contract.toVote(selectNumber);
 		alert("투표완료!")
 		console.log(response);
 	}
 
-	const test2 = async() => {
+	const toResult = async() => {
 		const response = await contract.checkVoteCount();
 		console.log(response);
 		console.log("1번 : ", parseInt(response[0], 16));
-		console.log("2번 : ",parseInt(response[1], 16));
-		console.log("3번 : ",parseInt(response[2], 16));
+		console.log("2번 : ", parseInt(response[1], 16));
+		console.log("3번 : ", parseInt(response[2], 16));
+		setVoteNum1(parseInt(response[0], 16));
+		setVoteNum2(parseInt(response[1], 16));
+		setVoteNum3(parseInt(response[2], 16));
+	}
+
+	const resetVote = async() => {
+		const response = await contract.resultVote();
+		console.log(response);
+	}
+
+
+	const readResult = () => {
+		
+		let readVoteResult = Math.max(voteNum1,voteNum2,voteNum3);
+		console.log(readVoteResult)
+		switch(readVoteResult) {
+			case voteNum1 :
+				setFinish("1번 당선");
+				return 	resetVote()
+
+			case voteNum2 :
+				setFinish("2번 당선");
+				return 	resetVote()
+
+			case voteNum3 :
+				setFinish("3번 당선");
+				return 	resetVote()
+			
+			default :
+				return "";
+		}
 	}
 
 	// useEffect
@@ -129,6 +163,7 @@ const WalletCard = () => {
         
     }
 	
+	console.log("피니시 : ", finish);
 	return (
 		<div className='walletCard'>
 		{/* <h4> {"Connection to MetaMask using window.ethereum methods"} </h4>
@@ -149,12 +184,20 @@ const WalletCard = () => {
                 {/* <button onClick={votefinish}>
                     투표완료
                 </button> */}
-                <button onClick={test1}> 투표하기 </button>
+                <button onClick={vote}> 투표하기 </button>
                 
 				{ defaultAccount == "0xb6e4e1888fd9ba1c005b63c0bce4329fea29f171"
-				? <button onClick={test2}> 관리자권한 </button>
+				? <>
+					<button onClick={toResult}> 관리자권한 </button>
+					<button onClick={readResult}> 결과 </button>
+					<p>{finish}</p>
+					<p>1번 : {voteNum1} 표</p>
+					<p>2번 : {voteNum2} 표</p>
+					<p>3번 : {voteNum3} 표</p>
+				</>
 				: null
 				}
+				
             </div>
 		</div>
 	);
