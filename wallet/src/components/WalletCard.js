@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-<<<<<<< Updated upstream
 //import {Web3} from "web3";
-
-=======
 import Swal from 'sweetalert2'
->>>>>>> Stashed changes
+import { useNavigate } from 'react-router-dom';
 
 
 const WalletCard = () => {
+
+    const navigate = useNavigate();
+
+    const showVoteResult = () => {
+        navigate("/voteresult");
+    }
 	
 	// let lotteryAddress = "0xa72B369D2C2376D16A53B5a4E3674Ef099C872f9";
 	// let lotteryABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"checkVoteCount","outputs":[{"internalType":"uint256[3]","name":"","type":"uint256[3]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_num","type":"uint256"}],"name":"toVote","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"voteArray","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
@@ -97,9 +100,10 @@ const WalletCard = () => {
             title: '투표완료!',
             text: '투표가 완료되었습니다!',
             icon: 'success',
-            confirmButtonText: 'Back',
-            footer: `<button onClick={console.log('눌림')}>투표결과보기</button>`
+            confirmButtonText: '투표결과보기',
+            footer: `<button onClick={${showVoteResult()}}></button>`
         })
+        
     }
 	
 	return (
